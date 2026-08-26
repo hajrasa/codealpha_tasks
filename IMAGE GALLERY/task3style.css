@@ -1,0 +1,391 @@
+/* ==================================================================
+   DESIGN TOKENS
+   A quiet gallery-wall aesthetic: charcoal walls, warm off-white
+   mat board, and a single amber accent for interaction states.
+   ================================================================== */
+:root {
+  --wall: #1c1a18;
+  --wall-2: #100f0e;
+  --mat: #f4efe6;
+  --mat-dim: #f4efe6cc;
+  --ink: #2a2622;
+  --amber: #c98a3b;
+  --amber-soft: #e0ac6c;
+  --line: rgba(244, 239, 230, 0.14);
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--wall);
+  color: var(--mat);
+  font-family: var(--font-body);
+  padding: 48px 24px 80px;
+}
+
+/* ==================================================================
+   HEADER
+   ================================================================== */
+.site-header {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber-soft);
+  margin-bottom: 10px;
+}
+
+.site-header h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  margin-bottom: 10px;
+}
+
+.sub {
+  color: var(--mat-dim);
+  font-size: 0.95rem;
+}
+
+/* ==================================================================
+   FILTERS — styled like small museum wall placards
+   ================================================================== */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 900px;
+  margin: 0 auto 40px;
+}
+
+.filter-btn {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--mat-dim);
+  padding: 9px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--amber-soft);
+  color: var(--mat);
+}
+
+.filter-btn.active {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: var(--wall-2);
+  font-weight: 600;
+}
+
+/* ==================================================================
+   GALLERY GRID
+   ================================================================== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 22px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.frame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--mat);
+  padding: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  /* Entrance + filter transitions */
+  transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.3s ease;
+}
+
+.frame .photo-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease, filter 0.4s ease;
+}
+
+.frame:hover img {
+  transform: scale(1.08);
+}
+
+.frame:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+}
+
+/* Hover overlay with caption + view icon */
+.overlay {
+  position: absolute;
+  inset: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(16,15,14,0.85) 0%, rgba(16,15,14,0.05) 55%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.frame:hover .overlay {
+  opacity: 1;
+}
+
+.overlay .cap-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--mat);
+  margin-bottom: 2px;
+}
+
+.overlay .cap-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--amber-soft);
+}
+
+.view-icon {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(244, 239, 230, 0.15);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.frame:hover .view-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.view-icon svg {
+  width: 16px;
+  height: 16px;
+  color: var(--mat);
+}
+
+/* Filtering animation states, toggled by JS */
+.frame.hide {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+}
+
+/* ==================================================================
+   LIGHTBOX
+   ================================================================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 9, 8, 0.94);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lb-frame {
+  position: relative;
+  max-width: min(90vw, 780px);
+  max-height: 85vh;
+  background: var(--mat);
+  padding: 18px 18px 20px;
+  border-radius: 6px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+  transform: scale(0.92);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(.2,.8,.3,1.15), opacity 0.3s ease;
+}
+
+.lightbox.open .lb-frame {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.lb-frame img {
+  display: block;
+  max-width: 100%;
+  max-height: 62vh;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 2px;
+  /* Crossfade when switching images */
+  transition: opacity 0.25s ease;
+}
+
+.lb-frame img.switching {
+  opacity: 0;
+}
+
+.lb-caption {
+  padding-top: 14px;
+  text-align: center;
+  color: var(--ink);
+}
+
+.lb-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.lb-meta {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8175;
+}
+
+.lb-counter {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  translate: -50% 0;
+  font-size: 0.75rem;
+  color: var(--mat-dim);
+  letter-spacing: 0.05em;
+}
+
+/* Close + nav buttons */
+.lb-close,
+.lb-nav {
+  background: rgba(244, 239, 230, 0.08);
+  border: 1px solid var(--line);
+  color: var(--mat);
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.lb-close:hover,
+.lb-nav:hover {
+  background: var(--amber);
+  color: var(--wall-2);
+}
+
+.lb-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.lb-nav {
+  width: 48px;
+  height: 48px;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  margin: 0 18px;
+}
+
+.lb-nav:active {
+  transform: scale(0.9);
+}
+
+/* ==================================================================
+   RESPONSIVE
+   ================================================================== */
+@media (max-width: 720px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
+  }
+
+  .lb-nav {
+    width: 38px;
+    height: 38px;
+    font-size: 1.4rem;
+    margin: 0 8px;
+  }
+
+  .lb-close {
+    top: 12px;
+    right: 12px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .lb-frame {
+    padding: 12px 12px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 32px 14px 60px;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .filter-btn {
+    padding: 7px 14px;
+    font-size: 0.72rem;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .frame, .frame img, .overlay, .view-icon, .lightbox, .lb-frame, .lb-frame img {
+    transition: none !important;
+  }
+}

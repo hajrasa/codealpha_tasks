@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hajra Saleemi — CS Student & Web Developer</title>
+  <meta name="description" content="Portfolio of Hajra Saleemi, a Computer Science student building databases, OOP applications, and web interfaces." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="task2style.css" />
+</head>
+<body>
+
+  <!-- nav bar -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav-brand">HS</a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- intro / about -->
+  <section class="hero" id="top">
+    <div class="hero-inner reveal">
+      <p class="eyebrow">Portfolio</p>
+      <div class="avatar" id="about">HS</div>
+      <h1>Hajra Saleemi</h1>
+      <p class="role">CS Student</p>
+      <p class="bio">
+        I'm a computer science student who loves building websites and turning ideas
+        into working systems. I enjoy the process of creating something from scratch
+        and using it to showcase my creativity.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+      </div>
+    </div>
+    <div class="scroll-cue">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- skills -->
+  <section class="section" id="skills">
+    <div class="section-head reveal">
+      <p class="eyebrow">01 - Toolkit</p>
+      <h2>Skills</h2>
+    </div>
+
+    <div class="skills-grid reveal">
+      <div class="skill-card">
+        <p class="skill-label">Programming</p>
+        <p class="skill-name">Object-Oriented Programming</p>
+      </div>
+      <div class="skill-card">
+        <p class="skill-label">Database</p>
+        <p class="skill-name">MySQL</p>
+      </div>
+      <div class="skill-card">
+        <p class="skill-label">Markup</p>
+        <p class="skill-name">HTML</p>
+      </div>
+      <div class="skill-card">
+        <p class="skill-label">Styling</p>
+        <p class="skill-name">CSS</p>
+      </div>
+      <div class="skill-card">
+        <p class="skill-label">Scripting</p>
+        <p class="skill-name">JavaScript</p>
+      </div>
+      <div class="skill-card learning">
+        <p class="skill-label">Framework</p>
+        <p class="skill-name">React <span class="badge">Learning</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- projects -->
+  <section class="section" id="projects">
+    <div class="section-head reveal">
+      <p class="eyebrow">02 - Selected Work</p>
+      <h2>Projects</h2>
+    </div>
+
+    <div class="projects-list">
+
+      <!-- transport system, no screenshot for this one -->
+      <article class="project-card reveal">
+        <div class="project-body">
+          <h3>University Transport Management System</h3>
+          <p>
+            A centralized system built to replace paper-based campus gate registers.
+            It verifies students, drivers, and visitors in real time, logs every entry
+            to a single database, and automates report generation, cutting
+            multi-minute manual checks down to seconds while keeping a permanent,
+            role-restricted audit trail.
+          </p>
+          <ul class="project-points">
+            <li>Real-time identity verification at campus gates</li>
+            <li>Centralized logging across multiple entry points</li>
+            <li>Role-based permissions with permanent audit logs</li>
+            <li>Automated, category-filtered report generation</li>
+          </ul>
+          <p class="stack">STACK: MySQL, Front-End Interface</p>
+          <p class="repo-note">Private project, not yet public</p>
+        </div>
+      </article>
+
+      <!-- bank system, this one has a screenshot -->
+      <article class="project-card has-media reveal">
+        <div class="project-media">
+          <img src="screenshot.jpeg" alt="Bank Management System interface" />
+        </div>
+        <div class="project-body">
+          <h3>Bank Management System</h3>
+          <p>
+            A desktop application for handling core banking operations, customer
+            accounts, deposits, withdrawals, and transaction history, with all
+            records stored and managed through a MySQL database.
+          </p>
+          <p class="stack">STACK: MySQL, XAMPP</p>
+          <p class="repo-note">Not yet public</p>
+        </div>
+      </article>
+
+      <!-- flight reservation, no screenshot for this one -->
+      <article class="project-card reveal">
+        <div class="project-body">
+          <h3>Flight Reservation System</h3>
+          <p>
+            A console-based flight booking application written in C++, built around
+            object-oriented design to manage flight search, seat selection, and
+            reservation records through custom classes.
+          </p>
+          <p class="stack">STACK: C++ (OOP)</p>
+          <p class="repo-note">Not yet public</p>
+        </div>
+      </article>
+
+      <!-- shoe store, has 2 videos + 1 screenshot -->
+      <article class="project-card has-media reveal">
+        <div class="project-media multi quad">
+          <video src="WhatsApp Video 2026-08-26 at 5.38.41 AM.mp4" controls preload="metadata"></video>
+          <video src="WhatsApp Video 2026-08-26 at 5.40.36 AM.mp4" controls preload="metadata"></video>
+          <img src="screenshot2.png" alt="Shoe store homepage" />
+             <img src="screenshot3.png" alt="Shoe store homepage" />
+        </div>
+        <div class="project-body">
+          <h3>Shoe Store E-Commerce Website</h3>
+          <p>
+            An online shoe store with separate sections for men, women, and kids,
+            letting customers browse products by category and add items to their cart.
+          </p>
+          <!-- fill in your actual stack here, e.g. STACK: HTML, CSS, JavaScript -->
+          <p class="stack">STACK: [add your tech stack]</p>
+          <p class="repo-note">Not yet public</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- education -->
+  <section class="section" id="education">
+    <div class="section-head reveal">
+      <p class="eyebrow">03 - Background</p>
+      <h2>Education</h2>
+    </div>
+
+    <div class="edu-card reveal">
+      <div class="edu-row">
+        <div>
+          <h3>BS Computer Science</h3>
+          <!-- put your university name here -->
+          <p class="edu-sub">[Your University Name]</p>
+        </div>
+        <p class="edu-time">5th Semester - In Progress</p>
+      </div>
+      <p class="edu-desc">
+        Currently studying core computer science fundamentals, with coursework
+        spanning object-oriented programming and database systems, applied
+        hands-on through projects like the ones above.
+      </p>
+    </div>
+  </section>
+
+  <!-- contact -->
+  <section class="section contact-section" id="contact">
+    <div class="section-head reveal">
+      <p class="eyebrow">04 - Get In Touch</p>
+      <h2>Contact</h2>
+    </div>
+
+    <div class="contact-box reveal">
+      <p class="contact-line">
+        Have a project in mind, or just want to say hi? My inbox is open.
+      </p>
+      <div class="contact-email-row">
+        <a href="mailto:hajrasalymi@gmail.com" class="contact-email" id="emailLink">hajrasalymi@gmail.com</a>
+        <button class="copy-btn" id="copyBtn" aria-label="Copy email address">Copy</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; <span id="year"></span> Hajra Saleemi. Built with HTML, CSS &amp; JavaScript.</p>
+  </footer>
+
+  <script src="task2script.js"></script>
+</body>
+</html>

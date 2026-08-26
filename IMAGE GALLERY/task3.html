@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery Wall</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="task3style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <p class="eyebrow">Collection No. 01</p>
+    <h1>The Gallery Wall</h1>
+    <p class="sub">A small curated set of photographs, sorted by subject.</p>
+  </header>
+
+  <!-- ================= CATEGORY FILTERS ================= -->
+  <nav class="filters" id="filters">
+    <button class="filter-btn active" data-filter="all">All Works</button>
+    <button class="filter-btn" data-filter="nature">Nature</button>
+    <button class="filter-btn" data-filter="architecture">Architecture</button>
+    <button class="filter-btn" data-filter="wildlife">Wildlife</button>
+    <button class="filter-btn" data-filter="travel">Travel</button>
+    <button class="filter-btn" data-filter="food">Food</button>
+  </nav>
+
+  <!-- ================= GALLERY GRID ================= -->
+  <main class="gallery" id="gallery"></main>
+
+  <!-- ================= LIGHTBOX ================= -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous image">&#8249;</button>
+
+    <div class="lb-frame">
+      <img id="lbImage" src="" alt="" />
+      <div class="lb-caption">
+        <p class="lb-title" id="lbTitle"></p>
+        <p class="lb-meta" id="lbMeta"></p>
+      </div>
+      <p class="lb-counter" id="lbCounter"></p>
+    </div>
+
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next image">&#8250;</button>
+  </div>
+
+  <script src="task3script.js"></script>
+</body>
+</html>
